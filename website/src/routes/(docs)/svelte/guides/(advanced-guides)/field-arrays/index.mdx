@@ -69,14 +69,13 @@ To dynamically generate the form fields for the todos, you use the <Link href="/
       heading: '',
       todos: [{ label: '', deadline: '' }],
     },
-    onSubmit: (output) => console.log(output),
   });
 </script>
 
-<Form of={todoForm}>
+<Form of={todoForm} onsubmit={(output) => console.log(output)}>
   <Field of={todoForm} path={['heading']}>
     {#snippet children(field)}
-      <input {...field.props} value={field.input ?? ''} type="text" />
+      <input {...field.props} value={field.input} type="text" />
       {#if field.errors}
         <div>{field.errors[0]}</div>
       {/if}
@@ -90,7 +89,7 @@ To dynamically generate the form fields for the todos, you use the <Link href="/
           <div>
             <Field of={todoForm} path={['todos', index, 'label']}>
               {#snippet children(field)}
-                <input {...field.props} value={field.input ?? ''} type="text" />
+                <input {...field.props} value={field.input} type="text" />
                 {#if field.errors}
                   <div>{field.errors[0]}</div>
                 {/if}
@@ -99,7 +98,7 @@ To dynamically generate the form fields for the todos, you use the <Link href="/
 
             <Field of={todoForm} path={['todos', index, 'deadline']}>
               {#snippet children(field)}
-                <input {...field.props} value={field.input ?? ''} type="date" />
+                <input {...field.props} value={field.input} type="date" />
                 {#if field.errors}
                   <div>{field.errors[0]}</div>
                 {/if}
@@ -125,7 +124,7 @@ As with <Link href="/svelte/guides/nested-fields/">nested fields</Link>, you use
 ```svelte
 <Field of={todoForm} path={['todos', index, 'label']}>
   {#snippet children(field)}
-    <input {...field.props} value={field.input ?? ''} type="text" />
+    <input {...field.props} value={field.input} type="text" />
   {/snippet}
 </Field>
 ```
@@ -265,7 +264,7 @@ const NestedSchema = v.object({
       <div>
         <Field of={form} path={['categories', categoryIndex, 'name']}>
           {#snippet children(field)}
-            <input {...field.props} value={field.input ?? ''} />
+            <input {...field.props} value={field.input} />
           {/snippet}
         </Field>
 
@@ -283,7 +282,7 @@ const NestedSchema = v.object({
                 ]}
               >
                 {#snippet children(field)}
-                  <input {...field.props} value={field.input ?? ''} />
+                  <input {...field.props} value={field.input} />
                 {/snippet}
               </Field>
             {/each}

@@ -61,11 +61,7 @@ export default function TodoPage() {
       <Field of={todoForm} path={['heading']}>
         {(field) => (
           <>
-            <input
-              {...field.props}
-              value={field.input.value ?? ''}
-              type="text"
-            />
+            <input {...field.props} value={field.input} type="text" />
             {field.errors.value && <div>{field.errors.value[0]}</div>}
           </>
         )}
@@ -79,11 +75,7 @@ export default function TodoPage() {
                 <Field of={todoForm} path={['todos', index, 'label']}>
                   {(field) => (
                     <>
-                      <input
-                        {...field.props}
-                        value={field.input.value ?? ''}
-                        type="text"
-                      />
+                      <input {...field.props} value={field.input} type="text" />
                       {field.errors.value && <div>{field.errors.value[0]}</div>}
                     </>
                   )}
@@ -92,11 +84,7 @@ export default function TodoPage() {
                 <Field of={todoForm} path={['todos', index, 'deadline']}>
                   {(field) => (
                     <>
-                      <input
-                        {...field.props}
-                        value={field.input.value ?? ''}
-                        type="date"
-                      />
+                      <input {...field.props} value={field.input} type="date" />
                       {field.errors.value && <div>{field.errors.value[0]}</div>}
                     </>
                   )}
@@ -120,9 +108,7 @@ As with <Link href="/preact/guides/nested-fields/">nested fields</Link>, you use
 
 ```tsx
 <Field of={todoForm} path={['todos', index, 'label']}>
-  {(field) => (
-    <input {...field.props} value={field.input.value ?? ''} type="text" />
-  )}
+  {(field) => <input {...field.props} value={field.input} type="text" />}
 </Field>
 ```
 
@@ -262,9 +248,7 @@ const NestedSchema = v.object({
       {categoryArray.items.value.map((categoryItem, categoryIndex) => (
         <div key={categoryItem}>
           <Field of={form} path={['categories', categoryIndex, 'name']}>
-            {(field) => (
-              <input {...field.props} value={field.input.value ?? ''} />
-            )}
+            {(field) => <input {...field.props} value={field.input} />}
           </Field>
 
           <FieldArray of={form} path={['categories', categoryIndex, 'items']}>
@@ -282,9 +266,7 @@ const NestedSchema = v.object({
                       'title',
                     ]}
                   >
-                    {(field) => (
-                      <input {...field.props} value={field.input.value ?? ''} />
-                    )}
+                    {(field) => <input {...field.props} value={field.input} />}
                   </Field>
                 ))}
               </>

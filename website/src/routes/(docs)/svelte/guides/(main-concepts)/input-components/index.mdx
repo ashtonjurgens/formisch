@@ -64,32 +64,24 @@ In the first step, you create a new file for the `TextInput` component and, if y
 
 ```svelte
 <script lang="ts">
-  type TextInputProps = {
-    name: string;
+  import type { FieldElementProps } from '@formisch/svelte';
+
+  interface TextInputProps extends FieldElementProps {
     type: 'text' | 'email' | 'tel' | 'password' | 'url' | 'date';
     label?: string;
     placeholder?: string;
     input: string | undefined;
     errors: [string, ...string[]] | null;
     required?: boolean;
-    onfocus?: (event: FocusEvent) => void;
-    oninput?: (event: InputEvent) => void;
-    onchange?: (event: Event) => void;
-    onblur?: (event: FocusEvent) => void;
-  };
+  }
 
   let {
-    name,
     type = 'text',
     label,
     placeholder,
     input,
     errors,
-    required,
-    onfocus,
-    oninput,
-    onchange,
-    onblur,
+    ...props
   } = $props<TextInputProps>();
 </script>
 ```
@@ -105,26 +97,22 @@ In the next step, add the component markup to display the input and error messag
 
 <div>
   {#if label}
-    <label for={name}>
+    <label for={props.name}>
       {label}
-      {#if required}<span>*</span>{/if}
+      {#if props.required}<span>*</span>{/if}
     </label>
   {/if}
   <input
-    {name}
+    {...props}
     {type}
     {placeholder}
-    id={name}
-    value={input ?? ''}
+    id={props.name}
+    value={input}
     aria-invalid={!!errors}
-    aria-errormessage={`${name}-error`}
-    {onfocus}
-    {oninput}
-    {onchange}
-    {onblur}
+    aria-errormessage={`${props.name}-error`}
   />
   {#if errors}
-    <div id={`${name}-error`}>{errors[0]}</div>
+    <div id={`${props.name}-error`}>{errors[0]}</div>
   {/if}
 </div>
 ```
@@ -139,57 +127,45 @@ Below is an overview of the entire code of the `TextInput` component.
 
 ```svelte
 <script lang="ts">
-  type TextInputProps = {
-    name: string;
+  import type { FieldElementProps } from '@formisch/svelte';
+
+  interface TextInputProps extends FieldElementProps {
     type: 'text' | 'email' | 'tel' | 'password' | 'url' | 'date';
     label?: string;
     placeholder?: string;
     input: string | undefined;
     errors: [string, ...string[]] | null;
     required?: boolean;
-    onfocus?: (event: FocusEvent) => void;
-    oninput?: (event: InputEvent) => void;
-    onchange?: (event: Event) => void;
-    onblur?: (event: FocusEvent) => void;
-  };
+  }
 
   let {
-    name,
     type = 'text',
     label,
     placeholder,
     input,
     errors,
-    required,
-    onfocus,
-    oninput,
-    onchange,
-    onblur,
+    ...props
   } = $props<TextInputProps>();
 </script>
 
 <div>
   {#if label}
-    <label for={name}>
+    <label for={props.name}>
       {label}
-      {#if required}<span>*</span>{/if}
+      {#if props.required}<span>*</span>{/if}
     </label>
   {/if}
   <input
-    {name}
+    {...props}
     {type}
     {placeholder}
-    id={name}
-    value={input ?? ''}
+    id={props.name}
+    value={input}
     aria-invalid={!!errors}
-    aria-errormessage={`${name}-error`}
-    {onfocus}
-    {oninput}
-    {onchange}
-    {onblur}
+    aria-errormessage={`${props.name}-error`}
   />
   {#if errors}
-    <div id={`${name}-error`}>{errors[0]}</div>
+    <div id={`${props.name}-error`}>{errors[0]}</div>
   {/if}
 </div>
 ```

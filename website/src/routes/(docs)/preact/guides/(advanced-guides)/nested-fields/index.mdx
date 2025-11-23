@@ -36,9 +36,7 @@ When creating a nested field, use an array with multiple elements for the `path`
 
 ```tsx
 <Field of={contactForm} path={['name', 'first']}>
-  {(field) => (
-    <input {...field.props} value={field.input.value ?? ''} type="text" />
-  )}
+  {(field) => <input {...field.props} value={field.input} type="text" />}
 </Field>
 ```
 
@@ -61,9 +59,7 @@ const ProfileSchema = v.object({
 
 // Access deeply nested field
 <Field of={profileForm} path={['user', 'address', 'city']}>
-  {(field) => (
-    <input {...field.props} value={field.input.value ?? ''} type="text" />
-  )}
+  {(field) => <input {...field.props} value={field.input} type="text" />}
 </Field>;
 ```
 

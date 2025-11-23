@@ -1,7 +1,7 @@
 ---
 title: Create your form
 description: >-
-  Learn how to create a form with the createForm primitive. It initializes
+  Learn how to create a form with the createForm rune. It initializes
   your form's store based on your Valibot schema for managing form state
   and validation.
 contributors:
@@ -47,7 +47,7 @@ The <Link href="/svelte/api/createForm/">`createForm`</Link> rune accepts a conf
 - `validate`: When validation first occurs (optional, defaults to `'submit'`)
 - `revalidate`: When revalidation occurs after initial validation (optional, defaults to `'input'`)
 
-```tsx
+```ts
 const loginForm = createForm({
   schema: LoginSchema,
   initialInput: {

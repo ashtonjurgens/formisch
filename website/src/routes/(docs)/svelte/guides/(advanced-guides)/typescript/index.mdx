@@ -94,14 +94,14 @@ Valibot schemas can have different input and output types when using transformat
   <Field of={profileForm} path={['age']}>
     {#snippet children(field)}
       <!-- field.input is string -->
-      <input {...field.props} value={field.input ?? ''} type="text" />
+      <input {...field.props} value={field.input} type="text" />
     {/snippet}
   </Field>
 
   <Field of={profileForm} path={['birthDate']}>
     {#snippet children(field)}
       <!-- field.input is string -->
-      <input {...field.props} value={field.input ?? ''} type="date" />
+      <input {...field.props} value={field.input} type="date" />
     {/snippet}
   </Field>
 
@@ -201,7 +201,7 @@ You can create generic field components with proper TypeScript typing using the 
 <div>
   <label>
     Email
-    <input {...field.props} value={field.input ?? ''} type="email" />
+    <input {...field.props} value={field.input} type="email" />
   </label>
   {#if field.errors}
     <div>{field.errors[0]}</div>

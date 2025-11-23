@@ -22,7 +22,7 @@ A somewhat more special case are dynamically generated form fields based on an a
 
 In the following example we create a field array for a todo form with the following schema:
 
-```tsx
+```ts
 import * as v from 'valibot';
 
 const TodoFormSchema = v.object({
@@ -304,7 +304,7 @@ You can nest field arrays as deeply as you like. You will also find a suitable e
 
 As with fields, you can validate field arrays using Valibot's array validation functions. For example, to limit the length of the array:
 
-```tsx
+```ts
 const TodoFormSchema = v.object({
   todos: v.pipe(
     v.array(

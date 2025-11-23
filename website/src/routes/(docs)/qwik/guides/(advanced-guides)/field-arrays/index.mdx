@@ -64,11 +64,7 @@ export default component$(() => {
         path={['heading']}
         render$={(field) => (
           <>
-            <input
-              {...field.props}
-              value={field.input.value ?? ''}
-              type="text"
-            />
+            <input {...field.props} value={field.input.value} type="text" />
             {field.errors.value && <div>{field.errors.value[0]}</div>}
           </>
         )}
@@ -88,7 +84,7 @@ export default component$(() => {
                     <>
                       <input
                         {...field.props}
-                        value={field.input.value ?? ''}
+                        value={field.input.value}
                         type="text"
                       />
                       {field.errors.value && <div>{field.errors.value[0]}</div>}
@@ -103,7 +99,7 @@ export default component$(() => {
                     <>
                       <input
                         {...field.props}
-                        value={field.input.value ?? ''}
+                        value={field.input.value}
                         type="date"
                       />
                       {field.errors.value && <div>{field.errors.value[0]}</div>}
@@ -132,7 +128,7 @@ As with <Link href="/qwik/guides/nested-fields/">nested fields</Link>, you use a
   of={todoForm}
   path={['todos', index, 'label']}
   render$={(field) => (
-    <input {...field.props} value={field.input.value ?? ''} type="text" />
+    <input {...field.props} value={field.input.value} type="text" />
   )}
 />
 ```
@@ -278,7 +274,7 @@ const NestedSchema = v.object({
             of={form}
             path={['categories', categoryIndex, 'name']}
             render$={(field) => (
-              <input {...field.props} value={field.input.value ?? ''} />
+              <input {...field.props} value={field.input.value} />
             )}
           />
 
@@ -299,7 +295,7 @@ const NestedSchema = v.object({
                       'title',
                     ]}
                     render$={(field) => (
-                      <input {...field.props} value={field.input.value ?? ''} />
+                      <input {...field.props} value={field.input.value} />
                     )}
                   />
                 ))}

@@ -65,26 +65,17 @@ Our goal is to develop a `TextInput` component so that the code ends up looking 
 In the first step, you create a new file for the `TextInput` component and, if you use TypeScript, define its properties.
 
 ```tsx
-import {
-  component$,
-  type QwikChangeEvent,
-  type QwikFocusEvent,
-} from '@qwik.dev/core';
+import type { FieldElementProps } from '@formisch/qwik';
+import { component$, type ReadonlySignal } from '@qwik.dev/core';
 
-type TextInputProps = {
-  name: string;
+interface TextInputProps extends FieldElementProps {
   type: 'text' | 'email' | 'tel' | 'password' | 'url' | 'date';
   label?: string;
   placeholder?: string;
-  input: string | undefined;
-  errors: [string, ...string[]] | null;
+  input: ReadonlySignal<string | undefined>;
+  errors: ReadonlySignal<[string, ...string[]] | null>;
   required?: boolean;
-  ref: (element: HTMLInputElement) => void;
-  onFocus$: (event: QwikFocusEvent<HTMLInputElement>) => void;
-  onInput$: (event: Event, element: HTMLInputElement) => void;
-  onChange$: (event: QwikChangeEvent<HTMLInputElement>) => void;
-  onBlur$: (event: QwikFocusEvent<HTMLInputElement>) => void;
-};
+}
 ```
 
 ### Component function
@@ -92,21 +83,17 @@ type TextInputProps = {
 In the next step, add the component function to the file. We can destructure the props directly.
 
 ```tsx
-import {
-  component$,
-  type QwikChangeEvent,
-  type QwikFocusEvent,
-} from '@qwik.dev/core';
+import type { FieldElementProps } from '@formisch/qwik';
+import { component$, type ReadonlySignal } from '@qwik.dev/core';
 
-type TextInputProps = {
+interface TextInputProps extends FieldElementProps {
   /* ... */
-};
+}
 
 export const TextInput = component$<TextInputProps>(
-  ({ input, label, errors, ...inputProps }) => {
+  ({ input, label, errors, ...props }) => {
     // Component JSX will go here
   }
-);
 ```
 
 ### JSX code
@@ -114,18 +101,16 @@ export const TextInput = component$<TextInputProps>(
 After that, you can add the JSX code to the return statement.
 
 ```tsx
-import {
-  component$,
-  type QwikChangeEvent,
-  type QwikFocusEvent,
-} from '@qwik.dev/core';
+import type { FieldElementProps } from '@formisch/qwik';
+import { component$, type ReadonlySignal } from '@qwik.dev/core';
 
-type TextInputProps = {
+interface TextInputProps extends FieldElementProps {
   /* ... */
-};
+}
 
 export const TextInput = component$<TextInputProps>(
-  ({ input, label, errors, name, required, ...inputProps }) => {
+  ({ input, label, errors, ...props }) => {
+    const { name, required } = props;
     return (
       <div>
         {label && (
@@ -134,15 +119,13 @@ export const TextInput = component$<TextInputProps>(
           </label>
         )}
         <input
-          {...inputProps}
+          {...props}
           id={name}
-          name={name}
-          required={required}
-          value={input ?? ''}
-          aria-invalid={!!errors}
+          value={input.value}
+          aria-invalid={!!errors.value}
           aria-errormessage={`${name}-error`}
         />
-        {errors && <div id={`${name}-error`}>{errors[0]}</div>}
+        {errors.value && <div id={`${name}-error`}>{errors.value[0]}</div>}
       </div>
     );
   }
@@ -158,29 +141,21 @@ You can now build on this code and add CSS, for example. You can also follow the
 Below is an overview of the entire code of the `TextInput` component.
 
 ```tsx
-import {
-  component$,
-  type QwikChangeEvent,
-  type QwikFocusEvent,
-} from '@qwik.dev/core';
+import type { FieldElementProps } from '@formisch/qwik';
+import { component$, type ReadonlySignal } from '@qwik.dev/core';
 
-type TextInputProps = {
-  name: string;
+interface TextInputProps extends FieldElementProps {
   type: 'text' | 'email' | 'tel' | 'password' | 'url' | 'date';
   label?: string;
   placeholder?: string;
-  input: string | undefined;
-  errors: [string, ...string[]] | null;
+  input: ReadonlySignal<string | undefined>;
+  errors: ReadonlySignal<[string, ...string[]] | null>;
   required?: boolean;
-  ref: (element: HTMLInputElement) => void;
-  onFocus$: (event: QwikFocusEvent<HTMLInputElement>) => void;
-  onInput$: (event: Event, element: HTMLInputElement) => void;
-  onChange$: (event: QwikChangeEvent<HTMLInputElement>) => void;
-  onBlur$: (event: QwikFocusEvent<HTMLInputElement>) => void;
-};
+}
 
 export const TextInput = component$<TextInputProps>(
-  ({ input, label, errors, name, required, ...inputProps }) => {
+  ({ input, label, errors, ...props }) => {
+    const { name, required } = props;
     return (
       <div>
         {label && (
@@ -189,15 +164,13 @@ export const TextInput = component$<TextInputProps>(
           </label>
         )}
         <input
-          {...inputProps}
+          {...props}
           id={name}
-          name={name}
-          required={required}
-          value={input ?? ''}
-          aria-invalid={!!errors}
+          value={input.value}
+          aria-invalid={!!errors.value}
           aria-errormessage={`${name}-error`}
         />
-        {errors && <div id={`${name}-error`}>{errors[0]}</div>}
+        {errors.value && <div id={`${name}-error`}>{errors.value[0]}</div>}
       </div>
     );
   }

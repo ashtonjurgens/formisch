@@ -20,12 +20,12 @@ As soon as your forms become more complex, for example you set initial values or
 
 ### Text input example
 
-For a text input field you simply add the `value` attribute and pass the value of the field or in case of `undefined` an empty string:
+For a text input field you simply add the `value` attribute and pass the value of the field:
 
 ```svelte
 <Field of={loginForm} path={['firstName']}>
   {#snippet children(field)}
-    <input {...field.props} type="text" value={field.input ?? ''} />
+    <input {...field.props} type="text" value={field.input} />
   {/snippet}
 </Field>
 ```
@@ -85,7 +85,7 @@ Since not every input into an `<input type="number" />` field is a valid number,
     {type}
     {placeholder}
     id={name}
-    value={getValue() ?? ''}
+    value={getValue()}
     aria-invalid={!!errors}
     aria-errormessage={`${name}-error`}
     {onfocus}

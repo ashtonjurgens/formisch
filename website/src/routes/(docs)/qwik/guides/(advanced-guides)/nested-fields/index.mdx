@@ -39,7 +39,7 @@ When creating a nested field, use an array with multiple elements for the `path`
   of={contactForm}
   path={['name', 'first']}
   render$={(field) => (
-    <input {...field.props} value={field.input.value ?? ''} type="text" />
+    <input {...field.props} value={field.input.value} type="text" />
   )}
 />
 ```
@@ -66,7 +66,7 @@ const ProfileSchema = v.object({
   of={profileForm}
   path={['user', 'address', 'city']}
   render$={(field) => (
-    <input {...field.props} value={field.input.value ?? ''} type="text" />
+    <input {...field.props} value={field.input.value} type="text" />
   )}
 />;
 ```

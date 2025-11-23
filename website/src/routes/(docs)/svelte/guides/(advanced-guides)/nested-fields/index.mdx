@@ -37,7 +37,7 @@ When creating a nested field, use an array with multiple elements for the `path`
 ```svelte
 <Field of={contactForm} path={['name', 'first']}>
   {#snippet children(field)}
-    <input {...field.props} value={field.input ?? ''} type="text" />
+    <input {...field.props} value={field.input} type="text" />
   {/snippet}
 </Field>
 ```
@@ -64,7 +64,7 @@ const ProfileSchema = v.object({
 <!-- Access deeply nested field -->
 <Field of={profileForm} path={['user', 'address', 'city']}>
   {#snippet children(field)}
-    <input {...field.props} value={field.input ?? ''} type="text" />
+    <input {...field.props} value={field.input} type="text" />
   {/snippet}
 </Field>
 ```

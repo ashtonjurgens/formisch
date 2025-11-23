@@ -20,19 +20,14 @@ As soon as your forms become more complex, for example you set initial values or
 
 ### Text input example
 
-For a text input field you simply add the `value` attribute and pass the value of the field or in case of `undefined` an empty string:
+For a text input field you simply add the `value` attribute and pass the value of the field:
 
 ```tsx
 <Field
   of={loginForm}
   path={['firstName']}
   render$={(field) => (
-    <input
-      {...field.props}
-      type="text"
-      // Pass value or empty string
-      value={field.input.value ?? ''}
-    />
+    <input {...field.props} type="text" value={field.input.value} />
   )}
 />
 ```
@@ -87,7 +82,7 @@ export const NumberInput = component$<NumberInputProps>(
           id={name}
           name={name}
           type="number"
-          value={value.value ?? ''}
+          value={value.value}
           aria-invalid={!!errors}
           aria-errormessage={`${name}-error`}
         />
