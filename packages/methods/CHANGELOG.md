@@ -2,6 +2,10 @@
 
 All notable changes to the library will be documented in this file.
 
+## vX.X.X (Month DD, YYYY)
+
+- Fix return type of `handleSubmit` method to return a function that returns a Promise (issue #41)
+
 ## v0.5.0 (November 25, 2025)
 
 - Add support for returning error messages of normal objects in `handleSubmit` method (pull request #11)

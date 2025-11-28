@@ -19,13 +19,13 @@ import {
 export function handleSubmit<TSchema extends Schema>(
   form: BaseFormStore<TSchema>,
   handler: SubmitHandler<TSchema>
-): (event: SubmitEvent) => void;
+): (event: SubmitEvent) => Promise<void>;
 
 // @__NO_SIDE_EFFECTS__
 export function handleSubmit(
   form: BaseFormStore,
   handler: SubmitHandler<Schema>
-): (event: SubmitEvent) => void {
+): (event: SubmitEvent) => Promise<void> {
   return async (event: SubmitEvent) => {
     // Prevent default browser form submission
     event.preventDefault();
@@ -50,7 +50,10 @@ export function handleSubmit(
       // If an error occurred, set form errors
     } catch (error: unknown) {
       internalFormStore.errors.value = [
-        error && typeof error === 'object' && 'message' in error && typeof error.message === 'string'
+        error &&
+        typeof error === 'object' &&
+        'message' in error &&
+        typeof error.message === 'string'
           ? error.message
           : 'An unknown error has occurred.',
       ];
