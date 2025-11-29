@@ -45,19 +45,14 @@ export function getElementInput(
 
   // If element is radio, handle as string
   if (element.type === 'radio') {
-    // Get previous field input without tracking
-    const prevValue = untrack(
-      () => getFieldInput(internalFieldStore) as unknown
-    );
-
-    // If radio is checked, change previous value to its value
+    // If radio is checked, return its value
     // @ts-expect-error
     if (element.checked) {
       return element.value;
     }
 
     // Otherwise, return previous value
-    return prevValue;
+    return untrack(() => getFieldInput(internalFieldStore));
   }
 
   // If element is file input, handle single or multiple
