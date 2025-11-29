@@ -57,9 +57,9 @@ However, you can also use multiple checkboxes to represent an array of strings. 
 A group of radio buttons, while similar to an array of checkboxes, will only allow you to select one of the options based on which button is checked.
 
 ```svelte
-{#each [{ label: 'Red', value: 'red' }, { label: 'Green', value: 'green' }, { label: 'Blue', value: 'blue' }] as { label, value }}
-  <Field of={form} path={['color']}>
-    {#snippet children(field)}
+<Field of={form} path={['color']}>
+  {#snippet children(field)}
+    {#each [{ label: 'Red', value: 'red' }, { label: 'Green', value: 'green' }, { label: 'Blue', value: 'blue' }] as { label, value }}
       <label>
         <input
           {...field.props}
@@ -69,9 +69,9 @@ A group of radio buttons, while similar to an array of checkboxes, will only all
         />
         {label}
       </label>
-    {/snippet}
-  </Field>
-{/each}
+    {/each}
+  {/snippet}
+</Field>
 ```
 
 ## Select
