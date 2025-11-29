@@ -52,13 +52,13 @@ However, you can also use multiple checkboxes to represent an array of strings. 
 {/each}
 ```
 
-## Radio 
+## Radio
 
 A group of radio buttons, while similar to an array of checkboxes, will only allow you to select one of the options based on which button is checked.
 
 ```svelte
-{#each [{ label: 'Bananas', value: 'bananas' }, { label: 'Apples', value: 'apples' }, { label: 'Grapes', value: 'grapes' }] as { label, value }}
-  <Field of={form} path={['fruits']}>
+{#each [{ label: 'Red', value: 'red' }, { label: 'Green', value: 'green' }, { label: 'Blue', value: 'blue' }] as { label, value }}
+  <Field of={form} path={['color']}>
     {#snippet children(field)}
       <label>
         <input

@@ -60,20 +60,20 @@ However, you can also use multiple checkboxes to represent an array of strings. 
 </For>
 ```
 
-## Radio 
+## Radio
 
 A group of radio buttons, while similar to an array of checkboxes, will only allow you to select one of the options based on which button is checked.
 
 ```tsx
 <For
   each={[
-    { label: 'Bananas', value: 'bananas' },
-    { label: 'Apples', value: 'apples' },
-    { label: 'Grapes', value: 'grapes' },
+    { label: 'Red', value: 'red' },
+    { label: 'Green', value: 'green' },
+    { label: 'Blue', value: 'blue' },
   ]}
 >
   {({ label, value }) => (
-    <Field of={form} path={['fruits']}>
+    <Field of={form} path={['color']}>
       {(field) => (
         <label>
           <input

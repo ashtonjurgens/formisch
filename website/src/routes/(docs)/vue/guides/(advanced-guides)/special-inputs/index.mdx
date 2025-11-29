@@ -57,28 +57,28 @@ However, you can also use multiple checkboxes to represent an array of strings. 
 </template>
 ```
 
-## Radio 
+## Radio
 
 A group of radio buttons, while similar to an array of checkboxes, will only allow you to select one of the options based on which button is checked.
 
 ```vue
 <template>
-  <Field :of="form" :path="['fruits']" v-slot="field">
+  <Field :of="form" :path="['color']" v-slot="field">
     <label
-      v-for="fruit in [
-        { label: 'Bananas', value: 'bananas' },
-        { label: 'Apples', value: 'apples' },
-        { label: 'Grapes', value: 'grapes' },
+      v-for="color in [
+        { label: 'Red', value: 'red' },
+        { label: 'Green', value: 'green' },
+        { label: 'Blue', value: 'blue' },
       ]"
-      :key="fruit.value"
+      :key="color.value"
     >
       <input
         v-bind="field.props"
         type="radio"
-        :value="fruit.value"
-        :checked="field.input === fruit.value"
+        :value="color.value"
+        :checked="field.input === color.value"
       />
-      {{ fruit.label }}
+      {{ color.label }}
     </label>
   </Field>
 </template>

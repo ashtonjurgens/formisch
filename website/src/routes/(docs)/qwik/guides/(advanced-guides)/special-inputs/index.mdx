@@ -63,21 +63,21 @@ However, you can also use multiple checkboxes to represent an array of strings. 
 }
 ```
 
-## Radio 
+## Radio
 
 A group of radio buttons, while similar to an array of checkboxes, will only allow you to select one of the options based on which button is checked.
 
 ```tsx
 {
   [
-    { label: 'Bananas', value: 'bananas' },
-    { label: 'Apples', value: 'apples' },
-    { label: 'Grapes', value: 'grapes' },
+    { label: 'Red', value: 'red' },
+    { label: 'Green', value: 'green' },
+    { label: 'Blue', value: 'blue' },
   ].map(({ label, value }) => (
     <Field
       key={value}
       of={form}
-      path={['fruits']}
+      path={['color']}
       render$={(field) => (
         <label>
           <input
