@@ -1,11 +1,12 @@
 ---
 title: Special inputs
 description: >-
-  Learn how to use special HTML form inputs like checkboxes, select elements,
+  Learn how to use special HTML form inputs like checkboxes, radio buttons, select elements,
   and file inputs with Formisch. This guide covers both single and multiple
   value scenarios for each input type.
 contributors:
   - fabian-hiller
+  - jaydiablo
 ---
 
 import { Link } from '~/components';
@@ -51,6 +52,33 @@ However, you can also use multiple checkboxes to represent an array of strings. 
         :checked="field.input?.includes(fruit.value)"
       />
       {{ fruit.label }}
+    </label>
+  </Field>
+</template>
+```
+
+## Radio
+
+A group of radio buttons, while similar to an array of checkboxes, will only allow you to select one of the options based on which button is checked.
+
+```vue
+<template>
+  <Field :of="form" :path="['color']" v-slot="field">
+    <label
+      v-for="color in [
+        { label: 'Red', value: 'red' },
+        { label: 'Green', value: 'green' },
+        { label: 'Blue', value: 'blue' },
+      ]"
+      :key="color.value"
+    >
+      <input
+        v-bind="field.props"
+        type="radio"
+        :value="color.value"
+        :checked="field.input === color.value"
+      />
+      {{ color.label }}
     </label>
   </Field>
 </template>

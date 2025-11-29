@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { Dynamic, Show } from 'solid-js/web';
 
 type InputLabelProps = {
+  component?: 'label' | 'legend' | 'div';
   name?: string;
   label?: string;
   required?: boolean;
@@ -15,7 +16,7 @@ export function InputLabel(props: InputLabelProps) {
   return (
     <Show when={props.label}>
       <Dynamic
-        component={props.name ? 'label' : 'div'}
+        component={props.component ?? (props.name ? 'label' : 'div')}
         class={clsx(
           'inline-block font-medium md:text-lg lg:text-xl',
           !props.margin && 'mb-4 lg:mb-5'

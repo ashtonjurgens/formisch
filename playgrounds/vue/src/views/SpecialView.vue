@@ -6,6 +6,7 @@ import {
   FileInput,
   FormFooter,
   FormHeader,
+  RadioGroup,
   Select,
   Slider,
   TextInput,
@@ -18,6 +19,7 @@ const SpecialFormSchema = v.object({
     array: v.array(v.string()),
     boolean: v.optional(v.boolean(), false),
   }),
+  radio: v.optional(v.string()),
   select: v.object({
     array: v.array(v.string()),
     string: v.optional(v.string()),
@@ -81,7 +83,7 @@ const specialForm = useForm({
           v-slot="field"
         >
           <Checkbox
-            class="!p-0"
+            class="p-0!"
             v-model="field.input"
             :props="field.props"
             :label="label"
@@ -98,6 +100,20 @@ const specialForm = useForm({
           :props="field.props"
           :errors="field.errors"
           label="Checkbox boolean"
+        />
+      </Field>
+
+      <Field :of="specialForm" :path="['radio']" v-slot="field">
+        <RadioGroup
+          v-model="field.input"
+          :props="field.props"
+          label="Radio group"
+          :options="[
+            { label: 'Option 1', value: 'option_1' },
+            { label: 'Option 2', value: 'option_2' },
+            { label: 'Option 3', value: 'option_3' },
+          ]"
+          :errors="field.errors"
         />
       </Field>
 

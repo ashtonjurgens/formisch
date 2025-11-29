@@ -106,7 +106,7 @@ export default component$(() => {
                         render$={(field) => (
                           <TextInput
                             {...field.props}
-                            class="w-full !p-0 md:w-auto md:flex-1"
+                            class="w-full p-0! md:w-auto md:flex-1"
                             input={field.input}
                             errors={field.errors}
                             type="text"
@@ -122,7 +122,7 @@ export default component$(() => {
                         render$={(field) => (
                           <TextInput
                             {...field.props}
-                            class="flex-1 !p-0"
+                            class="flex-1 p-0!"
                             type="date"
                             input={field.input}
                             errors={field.errors}

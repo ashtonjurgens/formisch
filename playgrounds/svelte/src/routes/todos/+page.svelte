@@ -92,7 +92,7 @@
                         <TextInput
                           {...field.props}
                           input={field.input}
-                          class="w-full !p-0 md:w-auto md:flex-1"
+                          class="w-full p-0! md:w-auto md:flex-1"
                           errors={field.errors}
                           type="text"
                           placeholder="Enter task"
@@ -106,7 +106,7 @@
                         <TextInput
                           {...field.props}
                           input={field.input}
-                          class="flex-1 !p-0"
+                          class="flex-1 p-0!"
                           type="date"
                           errors={field.errors}
                           required

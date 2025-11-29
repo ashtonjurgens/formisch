@@ -40,7 +40,7 @@ useEventListener('resize', () => {
   <div
     ref="element"
     :class="[
-      '!m-0 h-0 origin-top duration-200',
+      'm-0! h-0 origin-top duration-200',
       !expanded && 'invisible -translate-y-2 scale-y-75 opacity-0',
       props.class,
     ]"

@@ -10,6 +10,8 @@ export * from './FormHeader';
 export * from './Head';
 export * from './InputErrors';
 export * from './InputLabel';
+export * from './Radio';
+export * from './RadioGroup';
 export * from './Select';
 export * from './Slider';
 export * from './Spinner';

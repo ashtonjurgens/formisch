@@ -6,6 +6,7 @@
     FileInput,
     FormFooter,
     FormHeader,
+    RadioGroup,
     Select,
     Slider,
     TextInput,
@@ -18,6 +19,7 @@
       array: v.array(v.string()),
       boolean: v.optional(v.boolean(), false),
     }),
+    radio: v.optional(v.string()),
     select: v.object({
       array: v.array(v.string()),
       string: v.optional(v.string()),
@@ -77,7 +79,7 @@
           <Field of={specialForm} path={['checkbox', 'array']}>
             {#snippet children(field)}
               <Checkbox
-                class="!p-0"
+                class="p-0!"
                 {...field.props}
                 {label}
                 {value}
@@ -96,6 +98,22 @@
             input={field.input}
             errors={field.errors}
             label="Checkbox boolean"
+          />
+        {/snippet}
+      </Field>
+
+      <Field of={specialForm} path={['radio']}>
+        {#snippet children(field)}
+          <RadioGroup
+            {...field.props}
+            label="Radio group"
+            options={[
+              { label: 'Option 1', value: 'option_1' },
+              { label: 'Option 2', value: 'option_2' },
+              { label: 'Option 3', value: 'option_3' },
+            ]}
+            input={field.input}
+            errors={field.errors}
           />
         {/snippet}
       </Field>

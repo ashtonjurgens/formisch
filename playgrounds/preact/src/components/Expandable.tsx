@@ -1,6 +1,6 @@
 import { useSignal } from '@preact/signals';
 import clsx from 'clsx';
-import type { ComponentChildren, JSX } from 'preact';
+import type { ComponentChildren } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { useEventListener } from '../hooks';
 
@@ -58,12 +58,14 @@ export function Expandable({
   return (
     <div
       class={clsx(
-        '!m-0 h-0 origin-top duration-200',
+        'm-0! h-0 origin-top duration-200',
         !expanded && 'invisible -translate-y-2 scale-y-75 opacity-0',
         props.class
       )}
       id={id}
-      ref={(ref) => (element.value = ref)}
+      ref={(ref) => {
+        element.value = ref;
+      }}
       aria-hidden={!expanded}
     >
       {frozenChildren}

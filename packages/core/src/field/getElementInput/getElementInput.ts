@@ -43,21 +43,16 @@ export function getElementInput(
     return element.checked;
   }
 
-  // If element is radio, handle as array
+  // If element is radio, handle as string
   if (element.type === 'radio') {
-    // Get previous field input without tracking
-    const prevValue = untrack(
-      () => getFieldInput(internalFieldStore) as unknown[]
-    );
-
-    // If radio is checked, add its value to array
+    // If radio is checked, return its value
     // @ts-expect-error
     if (element.checked) {
-      return [...prevValue, element.value];
+      return element.value;
     }
 
-    // Otherwise, remove its value from array
-    return prevValue.filter((value) => value !== element.value);
+    // Otherwise, return previous value
+    return untrack(() => getFieldInput(internalFieldStore));
   }
 
   // If element is file input, handle single or multiple

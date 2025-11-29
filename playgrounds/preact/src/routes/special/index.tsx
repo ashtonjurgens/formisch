@@ -1,11 +1,11 @@
 import { Field, Form, useForm } from '@formisch/preact';
-import { computed } from '@preact/signals';
 import * as v from 'valibot';
 import {
   Checkbox,
   FileInput,
   FormFooter,
   FormHeader,
+  RadioGroup,
   Select,
   Slider,
   TextInput,
@@ -18,6 +18,7 @@ const SpecialFormSchema = v.object({
     array: v.array(v.string()),
     boolean: v.optional(v.boolean(), false),
   }),
+  radio: v.optional(v.string()),
   select: v.object({
     array: v.array(v.string()),
     string: v.optional(v.string()),
@@ -78,7 +79,7 @@ export default function Page() {
               {(field) => (
                 <Checkbox
                   {...field.props}
-                  class="!p-0"
+                  class="p-0!"
                   label={label}
                   value={value}
                   input={computed(() => field.input.value.includes(value))}
@@ -96,6 +97,22 @@ export default function Page() {
               input={field.input}
               errors={field.errors}
               label="Checkbox boolean"
+            />
+          )}
+        </Field>
+
+        <Field of={specialForm} path={['radio']}>
+          {(field) => (
+            <RadioGroup
+              {...field.props}
+              label="Radio group"
+              options={[
+                { label: 'Option 1', value: 'option_1' },
+                { label: 'Option 2', value: 'option_2' },
+                { label: 'Option 3', value: 'option_3' },
+              ]}
+              input={field.input}
+              errors={field.errors}
             />
           )}
         </Field>

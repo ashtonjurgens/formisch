@@ -77,7 +77,7 @@ export default function NestedPage() {
                               input={field.input}
                               errors={field.errors}
                               type="text"
-                              class="flex-1 !p-0"
+                              class="flex-1 p-0!"
                               placeholder="Enter item"
                             />
                           )}
@@ -129,7 +129,7 @@ export default function NestedPage() {
                                         {...field.props}
                                         input={field.input}
                                         errors={field.errors}
-                                        class="flex-1 !p-0"
+                                        class="flex-1 p-0!"
                                         type="text"
                                         placeholder="Enter option"
                                       />
