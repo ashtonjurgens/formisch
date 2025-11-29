@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 
 type InputLabelProps = {
+  component?: 'label' | 'legend' | 'div';
   name?: string;
   label?: string;
   required?: boolean;
@@ -10,8 +11,14 @@ type InputLabelProps = {
 /**
  * Input label for a form field.
  */
-export function InputLabel({ name, label, required, margin }: InputLabelProps) {
-  const Element = name ? 'label' : 'div';
+export function InputLabel({
+  component,
+  name,
+  label,
+  required,
+  margin,
+}: InputLabelProps) {
+  const Element = component ?? (name ? 'label' : 'div');
   return (
     <>
       {label && (

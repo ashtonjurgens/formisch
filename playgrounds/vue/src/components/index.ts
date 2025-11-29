@@ -10,6 +10,7 @@ export { default as FormHeader } from './FormHeader.vue';
 export { default as InputErrors } from './InputErrors.vue';
 export { default as InputLabel } from './InputLabel.vue';
 export { default as Radio } from './Radio.vue';
+export { default as RadioGroup } from './RadioGroup.vue';
 export { default as Select } from './Select.vue';
 export { default as Slider } from './Slider.vue';
 export { default as Spinner } from './Spinner.vue';
