@@ -14,7 +14,7 @@ interface RadioProps extends FieldElementProps {
 }
 
 /**
- * Radio button that allows users to select just one option. The label next to the
+ * Radio button that allows users to select an option. The label next to the
  * radio button describes the selection option.
  */
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
