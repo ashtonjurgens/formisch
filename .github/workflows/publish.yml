@@ -48,6 +48,27 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+  react_npm:
+    name: Publish React to NPM
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/environment
+      - name: Build library
+        run: pnpm build
+        working-directory: frameworks/react
+      - name: Publish library
+        run: pnpm publish --provenance --access public --no-git-checks
+        working-directory: frameworks/react
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
   solid_npm:
     name: Publish Solid to NPM
     runs-on: ubuntu-latest
