@@ -29,7 +29,16 @@ export type Listener = [() => void, Set<Set<Listener>>];
 /**
  * The current listener being tracked.
  */
-export let listener: Listener | undefined;
+let listener: Listener | undefined;
+
+/**
+ * Sets the current listener being tracked.
+ *
+ * @param newListener The new listener to set.
+ */
+export function setListener(newListener: Listener | undefined): void {
+  listener = newListener;
+}
 
 /**
  * Subscribers collected during a batch.
