@@ -19,6 +19,7 @@ export * from './PlayIcon';
 export * from './PlusIcon';
 export * from './PreactIcon';
 export * from './QwikIcon';
+export * from './ReactIcon';
 export * from './SearchIcon';
 export * from './ShareIcon';
 export * from './SolidIcon';

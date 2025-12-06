@@ -9,6 +9,7 @@ export * from './MotionLogo';
 export * from './NetlifyLogo';
 export * from './PreactLogo';
 export * from './QwikLogo';
+export * from './ReactLogo';
 export * from './PaceLogo';
 export * from './SolidLogo';
 export * from './StainlessLogo';

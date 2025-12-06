@@ -3,7 +3,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 // Define available frameworks
-const frameworks = ['preact', 'qwik', 'solid', 'svelte', 'vue'] as const;
+const frameworks = [
+  'preact',
+  'qwik',
+  'react',
+  'solid',
+  'svelte',
+  'vue',
+] as const;
 type Framework = (typeof frameworks)[number];
 
 /**
@@ -30,6 +37,7 @@ function convertMenuToLlms(markdown: string): string {
 const FRAMEWORK_NAME_MAP: Record<Framework, string> = {
   preact: 'Preact',
   qwik: 'Qwik',
+  react: 'React',
   solid: 'SolidJS',
   svelte: 'Svelte',
   vue: 'Vue',

@@ -5,16 +5,37 @@ import {
   routeAction$,
   routeLoader$,
 } from '@qwik.dev/router';
-import { PreactIcon, QwikIcon, SolidIcon, SvelteIcon, VueIcon } from '~/icons';
-import { PreactLogo, QwikLogo, SolidLogo, SvelteLogo, VueLogo } from '~/logos';
+import {
+  PreactIcon,
+  QwikIcon,
+  ReactIcon,
+  SolidIcon,
+  SvelteIcon,
+  VueIcon,
+} from '~/icons';
+import {
+  PreactLogo,
+  QwikLogo,
+  ReactLogo,
+  SolidLogo,
+  SvelteLogo,
+  VueLogo,
+} from '~/logos';
 
 const COOKIE_NAME = 'framework';
 
-export type Framework = 'preact' | 'qwik' | 'solid' | 'svelte' | 'vue';
+export type Framework =
+  | 'preact'
+  | 'qwik'
+  | 'react'
+  | 'solid'
+  | 'svelte'
+  | 'vue';
 
 export const FRAMEWORK_LIST: Framework[] = [
   'preact',
   'qwik',
+  'react',
   'solid',
   'svelte',
   'vue',
@@ -23,6 +44,7 @@ export const FRAMEWORK_LIST: Framework[] = [
 export const FRAMEWORK_NAME_MAP: Record<Framework, string> = {
   preact: 'Preact',
   qwik: 'Qwik',
+  react: 'React',
   solid: 'SolidJS',
   svelte: 'Svelte',
   vue: 'Vue',
@@ -34,6 +56,7 @@ const FRAMEWORK_LOGO_MAP: Record<
 > = {
   preact: PreactLogo,
   qwik: QwikLogo,
+  react: ReactLogo,
   solid: SolidLogo,
   svelte: SvelteLogo,
   vue: VueLogo,
@@ -45,6 +68,7 @@ const FRAMEWORK_ICON_MAP: Record<
 > = {
   preact: PreactIcon,
   qwik: QwikIcon,
+  react: ReactIcon,
   solid: SolidIcon,
   svelte: SvelteIcon,
   vue: VueIcon,
@@ -55,14 +79,8 @@ const FRAMEWORK_ICON_MAP: Record<
  */
 function getCookie(request: RequestEventAction): Framework {
   const value = request.cookie.get(COOKIE_NAME)?.value;
-  if (
-    value === 'preact' ||
-    value === 'qwik' ||
-    value === 'solid' ||
-    value === 'svelte' ||
-    value === 'vue'
-  ) {
-    return value;
+  if (FRAMEWORK_LIST.includes(value as Framework)) {
+    return value as Framework;
   }
   return 'solid'; // default framework
 }

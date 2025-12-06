@@ -25,7 +25,7 @@ Quick reference for selecting the right documentation guide.
 
 - Monorepo structure and package relationships
 - Core packages (`@formisch/core`, `@formisch/methods`)
-- Framework implementations (Preact, Qwik, Solid, Svelte, Vue)
+- Framework implementations (Preact, Qwik, React, Solid, Svelte, Vue)
 - Build system and reactivity injection
 - Development workflows
 

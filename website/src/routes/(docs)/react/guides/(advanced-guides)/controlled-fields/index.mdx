@@ -1,0 +1,142 @@
+---
+title: Controlled fields
+description: >-
+  Learn when and how to create controlled form fields. Controlled fields
+  are necessary for more complex forms where you need to set or manipulate
+  field values programmatically.
+contributors:
+  - fabian-hiller
+---
+
+import { Link } from '~/components';
+
+# Controlled fields
+
+By default, all form fields are uncontrolled because that's the default behavior of the browser. For a simple login or contact form this is quite sufficient.
+
+## Why controlled?
+
+As soon as your forms become more complex, for example you set initial values or change the values of a form field via <Link href="/methods/api/setInput/">`setInput`</Link>, it becomes necessary that you control your fields yourself. For example, depending on which HTML form field you use, you may need to set the `value`, `checked` or `selected` attributes.
+
+### Text input example
+
+For a text input field you simply add the `value` attribute and pass the field's input value:
+
+```tsx
+<Field of={loginForm} path={['firstName']}>
+  {(field) => <input {...field.props} type="text" value={field.input} />}
+</Field>
+```
+
+### Exception for files
+
+The HTML `<input type="file" />` element is an exception because it cannot be controlled. However, you have the possibility to control the UI around it. For inspiration you can use the code of our <a href={`${import.meta.env.PUBLIC_GITHUB_URL}/blob/main/playgrounds/react/src/components/FileInput.tsx`} target="\_blank" rel="noreferrer">`FileInput`</a> component from our <Link href="/playground/">playground</Link>.
+
+## Numbers and dates
+
+To make the fields of numbers and dates controlled, further steps are required, because the `<input />` element natively understands only strings as value.
+
+### Number input example
+
+Since not every input into an `<input type="number" />` field is a valid number, for example when typing floating numbers, the value may be `NaN` in between. You have to catch this case, otherwise the whole input will be removed when `NaN` is passed. It is best to encapsulate this logic in a separate component as described in the <Link href="/react/guides/input-components/">input components</Link> guide.
+
+```tsx
+import type { FieldElementProps } from '@formisch/react';
+import { useMemo, useRef } from 'react';
+
+interface NumberInputProps extends FieldElementProps {
+  label?: string;
+  placeholder?: string;
+  input: number | undefined;
+  errors: [string, ...string[]] | null;
+  required?: boolean;
+}
+
+export function NumberInput({
+  label,
+  input,
+  errors,
+  name,
+  ...inputProps
+}: NumberInputProps) {
+  const prevValue = useRef<number | undefined>();
+
+  // Get value, keeping previous value if NaN
+  const value = useMemo(() => {
+    if (typeof input === 'number' && !Number.isNaN(input)) {
+      prevValue.current = input;
+      return input;
+    }
+    return prevValue.current;
+  }, [input]);
+
+  return (
+    <div>
+      {label && <label htmlFor={name}>{label}</label>}
+      <input
+        {...inputProps}
+        name={name}
+        id={name}
+        type="number"
+        value={value}
+        aria-invalid={!!errors}
+        aria-errormessage={`${name}-error`}
+      />
+      {errors && <div id={`${name}-error`}>{errors[0]}</div>}
+    </div>
+  );
+}
+```
+
+### Date input example
+
+A date or a number representing a date must be converted to a string before it can be passed to an `<input type="date" />` field. Since it is a calculated value, you can use `useMemo` for this.
+
+```tsx
+import type { FieldElementProps } from '@formisch/react';
+import { useMemo } from 'react';
+
+interface DateInputProps extends FieldElementProps {
+  label?: string;
+  placeholder?: string;
+  input: Date | number | undefined;
+  errors: [string, ...string[]] | null;
+  required?: boolean;
+}
+
+export function DateInput({
+  label,
+  input,
+  errors,
+  name,
+  ...inputProps
+}: DateInputProps) {
+  // Transform date or number to string
+  const value = useMemo(() => {
+    return input &&
+      !Number.isNaN(typeof input === 'number' ? input : input.getTime())
+      ? new Date(input).toISOString().split('T', 1)[0]
+      : '';
+  }, [input]);
+
+  return (
+    <div>
+      {label && <label htmlFor={name}>{name}</label>}
+      <input
+        {...inputProps}
+        name={name}
+        id={name}
+        type="date"
+        value={value}
+        aria-invalid={!!errors}
+        aria-errormessage={`${name}-error`}
+      />
+      {errors && <div id={`${name}-error`}>{errors[0]}</div>}
+    </div>
+  );
+}
+```
+
+## Next steps
+
+Now that you understand controlled fields, you can explore more advanced topics like <Link href="/react/guides/nested-fields/">nested fields</Link> and <Link href="/react/guides/field-arrays/">field arrays</Link> to handle complex form structures.

@@ -10,7 +10,14 @@ import * as v from 'valibot';
 import { ActionButton, ButtonGroup, Expandable, TextLink } from '~/components';
 import { PlusIcon } from '~/icons';
 import { blurredCodeDarkUrl, blurredCodeLightUrl } from '~/images';
-import { PreactLogo, QwikLogo, SolidLogo, SvelteLogo, VueLogo } from '~/logos';
+import {
+  PreactLogo,
+  QwikLogo,
+  ReactLogo,
+  SolidLogo,
+  SvelteLogo,
+  VueLogo,
+} from '~/logos';
 import { useFramework } from './plugin@framework';
 
 export const head: DocumentHead = {
@@ -102,6 +109,12 @@ export default component$(() => {
             </p>
             <div class="flex flex-wrap justify-center gap-4 md:gap-8">
               {[
+                {
+                  Logo: ReactLogo,
+                  url: `${
+                    import.meta.env.PUBLIC_STACKBLITZ_REACT_URL
+                  }?file=src%2Froutes%2Flogin%2Findex.tsx`,
+                },
                 {
                   Logo: SolidLogo,
                   url: `${
