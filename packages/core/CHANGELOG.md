@@ -2,7 +2,7 @@
 
 All notable changes to the library will be documented in this file.
 
-## vX.X.X (Month DD, YYYY)
+## v0.4.5 (December 12, 2025)
 
 - Fix `initialInput` passed to `initializeFieldStore` for nullish wrapper schemas (pull request #48)
 
