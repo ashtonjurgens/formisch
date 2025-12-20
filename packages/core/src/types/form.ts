@@ -1,4 +1,5 @@
 import type * as v from 'valibot';
+import type { EngineConfig, EnginePathConfig } from '../engine/index.ts';
 import type { INTERNAL } from '../values.ts';
 import type { InternalObjectStore } from './field.ts';
 import type { Schema } from './schema.ts';
@@ -24,6 +25,10 @@ export interface FormConfig<TSchema extends Schema = Schema> {
    * The schema of the form.
    */
   readonly schema: TSchema;
+  /**
+   * Manipulate the behavior of the form by configuring the engine.
+   */
+  readonly engine?: EnginePathConfig[];
   /**
    * The initial input of the form.
    */
@@ -64,6 +69,10 @@ export interface InternalFormStore<TSchema extends Schema = Schema>
    * The parse function of the form.
    */
   parse: (input: unknown) => Promise<v.SafeParseResult<TSchema>>;
+  /**
+   * The engine configuration of the form.
+   */
+  engine: EngineConfig;
 
   /**
    * The submitting state of the form.

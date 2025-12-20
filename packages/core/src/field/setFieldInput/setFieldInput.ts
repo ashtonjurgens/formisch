@@ -11,13 +11,19 @@ import { initializeFieldStore } from '../initializeFieldStore/index.ts';
  * Sets the input for a nested field store and all its children, updating
  * touched and dirty states accordingly. Handles dynamic array resizing.
  *
+ * @param internalFormStore The form store.
  * @param internalFieldStore The field store to update.
  * @param input The new input value.
+ * @param path The path to the field.
  */
 function setNestedInput(
+  internalFormStore: InternalFormStore,
   internalFieldStore: InternalFieldStore,
-  input: unknown
+  input: unknown,
+  path: Path
 ): void {
+  const engine = internalFormStore.engine.get(path);
+
   // Mark field as touched
   internalFieldStore.isTouched.value = true;
 
@@ -96,9 +102,11 @@ function setNestedInput(
     ) {
       // Recursively set nested input
       setNestedInput(
+        internalFormStore,
         internalFieldStore.children[index],
         // @ts-expect-error
-        arrayInput[index]
+        arrayInput[index],
+        path.concat(index)
       );
     }
 
@@ -107,8 +115,11 @@ function setNestedInput(
 
     // Update dirty state based on input or items length change
     internalFieldStore.isDirty.value =
-      internalFieldStore.startInput.value !== internalFieldStore.input.value ||
-      internalFieldStore.startItems.value.length !== items.length;
+      internalFieldStore.startItems.value.length !== items.length ||
+      !engine.equals(
+        internalFieldStore.startInput.value,
+        internalFieldStore.input.value
+      );
 
     // Otherwise, if field store is object, handle object input
   } else if (internalFieldStore.kind === 'object') {
@@ -116,9 +127,11 @@ function setNestedInput(
     for (const key in internalFieldStore.children) {
       // Recursively set nested input
       setNestedInput(
+        internalFormStore,
         internalFieldStore.children[key],
         // @ts-expect-error
-        input?.[key]
+        input?.[key],
+        path.concat(key)
       );
     }
 
@@ -126,8 +139,10 @@ function setNestedInput(
     internalFieldStore.input.value = input == null ? input : true;
 
     // Update dirty state based on input change
-    internalFieldStore.isDirty.value =
-      internalFieldStore.startInput.value !== internalFieldStore.input.value;
+    internalFieldStore.isDirty.value = !engine.equals(
+      internalFieldStore.startInput.value,
+      internalFieldStore.input.value
+    );
 
     // Otherwise, handle value field input
   } else {
@@ -140,7 +155,7 @@ function setNestedInput(
 
     // Update dirty state with special handling for empty string and NaN
     internalFieldStore.isDirty.value =
-      startInput !== input &&
+      !engine.equals(startInput, input) &&
       // Hint: This check ensures that an empty string or `NaN` does not mark
       // the field as dirty if the start input was `undefined` or `null`.
       (startInput != null || (input !== '' && !Number.isNaN(input)));
@@ -180,7 +195,7 @@ export function setFieldInput(
       }
 
       // Set nested input on target field
-      setNestedInput(internalFieldStore, input);
+      setNestedInput(internalFormStore, internalFieldStore, input, path);
     });
   });
 }

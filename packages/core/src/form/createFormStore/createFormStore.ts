@@ -1,4 +1,5 @@
 import type * as v from 'valibot';
+import { createEngineConfig } from '../../engine/index.ts';
 import { type FieldSchema, initializeFieldStore } from '../../field/index.ts';
 import { createSignal } from '../../framework/index.ts';
 import type {
@@ -37,6 +38,7 @@ export function createFormStore(
   store.validate = config.validate ?? 'submit';
   store.revalidate = config.revalidate ?? 'input';
   store.parse = parse;
+  store.engine = createEngineConfig(config.engine);
 
   // Initialize form state signals
   store.isSubmitting = createSignal(false);
