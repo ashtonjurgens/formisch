@@ -37,7 +37,7 @@ export function createFormStore(
   store.validate = config.validate ?? 'submit';
   store.revalidate = config.revalidate ?? 'input';
   store.parse = parse;
-  store.custom = config.custom ?? {};
+  store.advanced = config.advanced ?? {};
 
   // Initialize form state signals
   store.isSubmitting = createSignal(false);

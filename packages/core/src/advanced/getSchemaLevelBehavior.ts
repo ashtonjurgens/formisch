@@ -50,7 +50,7 @@ export function getSchemaLevelBehavior(
   // Compute and cache the result (apply defaults, then form config, then schema overrides)
   const behavior: SchemaLevelBehavior = {
     ...defaultBehavior,
-    ...((internalFormStore.custom.schemaLevelBehavior?.(schema) ??
+    ...((internalFormStore.advanced.schemaLevelBehavior?.(schema) ??
       {}) as SchemaLevelBehavior),
     ...((schema['~formisch'] ?? {}) as SchemaLevelBehavior),
   };

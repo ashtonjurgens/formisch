@@ -29,7 +29,7 @@ export interface SchemaLevelBehavior {
  * ```ts
  * createForm({
  *  // Other configuration...
- *  custom: {
+ *  advanced: {
  *    schemaLevelBehavior: (schema) => {
  *      if (schema.type === 'number') {
  *        return {
@@ -44,7 +44,7 @@ export interface SchemaLevelBehavior {
  * Note that, customizations can also be done on an specific schema instance
  * by setting {@link SchemaLevelBehavior} on the `"~formisch"` key.
  */
-export interface AdvancedCustomizations {
+export interface AdvancedConfig {
   schemaLevelBehavior: (
     schema: Schema
   ) => Partial<SchemaLevelBehavior> | null | undefined;
