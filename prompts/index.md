@@ -4,14 +4,16 @@ Quick reference for selecting the right documentation guide.
 
 ## 📋 Quick Selection
 
-| Task                          | Guide                                                        |
-| ----------------------------- | ------------------------------------------------------------ |
-| Navigate repository structure | [`repository-structure.md`](#repository-structuremd)         |
-| Write JSDoc comments          | [`document-source-code.md`](#document-source-codemd)         |
-| Add new API docs to website   | [`add-new-api-to-website.md`](#add-new-api-to-websitemd)     |
-| Update API docs on website    | [`update-api-on-website.md`](#update-api-on-websitemd)       |
-| Review API docs for accuracy  | [`review-api-routes.md`](#review-api-routesmd)               |
-| Add tutorial/guide to website | [`add-new-guide-to-website.md`](#add-new-guide-to-websitemd) |
+| Task                          | Guide                                                            |
+| ----------------------------- | ---------------------------------------------------------------- |
+| Navigate repository structure | [`repository-structure.md`](#repository-structuremd)             |
+| Write JSDoc comments          | [`document-source-code.md`](#document-source-codemd)             |
+| Write unit tests              | [`write-unit-tests.md`](#write-unit-testsmd)                     |
+| Review source code changes    | [`review-source-code-changes.md`](#review-source-code-changesmd) |
+| Add new API docs to website   | [`add-new-api-to-website.md`](#add-new-api-to-websitemd)         |
+| Update API docs on website    | [`update-api-on-website.md`](#update-api-on-websitemd)           |
+| Review API docs for accuracy  | [`review-api-routes.md`](#review-api-routesmd)                   |
+| Add tutorial/guide to website | [`add-new-guide-to-website.md`](#add-new-guide-to-websitemd)     |
 
 ---
 
@@ -43,6 +45,23 @@ Quick reference for selecting the right documentation guide.
 - Cross-framework consistency rules
 
 **Key rule:** Same APIs must use identical documentation across all frameworks.
+
+---
+
+### `write-unit-tests.md`
+
+**When to use:** Writing or fixing unit tests in `packages/core/`
+
+**Covers:**
+
+- Test file structure and organization
+- Type-safe patterns (no casts)
+- Type guards for union types
+- DOM element mocking
+- Valibot issue helpers
+- Common type errors and fixes
+
+**Key rule:** No type casts — use type guards with `expect` assertions.
 
 ---
 
