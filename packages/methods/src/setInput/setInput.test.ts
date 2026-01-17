@@ -62,9 +62,12 @@ describe('setInput', () => {
   });
 
   test('should set full form input', () => {
-    const store = createTestStore(v.object({ name: v.string(), age: v.number() }), {
-      initialInput: { name: 'John', age: 30 },
-    });
+    const store = createTestStore(
+      v.object({ name: v.string(), age: v.number() }),
+      {
+        initialInput: { name: 'John', age: 30 },
+      }
+    );
 
     setInput(store, { input: { name: 'Jane', age: 25 } });
 
@@ -72,14 +75,14 @@ describe('setInput', () => {
     expect(store.children.age.input.value).toBe(25);
   });
 
-  test('should trigger validation when validate option is set', async () => {
+  test('should trigger validation when validate option is set', () => {
     const store = createTestStore(v.object({ name: v.string() }), {
       validate: 'input',
     });
 
     setInput(store, { path: ['name'], input: 'John' });
 
-    // Validation is async, but we can check that it was triggered
-    expect(store.children.name.input.value).toBe('John');
+    // Check that validators count increased, indicating validation was triggered
+    expect(store.validators).toBe(1);
   });
 });
