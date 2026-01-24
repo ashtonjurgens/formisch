@@ -16,6 +16,11 @@
     "build": "pnpm run build-packages && pnpm run build-frameworks",
     "build-packages": "pnpm --filter './packages/*' build",
     "build-frameworks": "pnpm --filter './frameworks/*' build",
+    "lint": "pnpm run lint-packages && pnpm run lint-frameworks",
+    "lint-packages": "pnpm --filter './packages/*' lint",
+    "lint-frameworks": "pnpm --filter './frameworks/*' lint",
+    "test": "pnpm run test-packages",
+    "test-packages": "pnpm --filter './packages/*' test",
     "check-versions": "pnpm --filter formisch-scripts check-versions",
     "create-releases": "pnpm --filter formisch-scripts create-releases"
   },

@@ -44,12 +44,17 @@ describe('setErrors', () => {
       { initialInput: { user: { email: '' } } }
     );
 
-    setErrors(store, { path: ['user', 'email'], errors: ['Email is required'] });
+    setErrors(store, {
+      path: ['user', 'email'],
+      errors: ['Email is required'],
+    });
 
     const userStore = store.children.user;
     expect(userStore.kind).toBe('object');
     if (userStore.kind === 'object') {
-      expect(userStore.children.email.errors.value).toEqual(['Email is required']);
+      expect(userStore.children.email.errors.value).toEqual([
+        'Email is required',
+      ]);
     }
   });
 

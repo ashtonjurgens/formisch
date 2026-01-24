@@ -38,6 +38,9 @@ export interface UseFieldConfig<
 /**
  * Creates a reactive field store of a specific field within a form store.
  *
+ * @param form The form store instance.
+ * @param config The field configuration.
+ *
  * @returns The field store with reactive properties and element props.
  */
 export function useField<

@@ -5,9 +5,12 @@ import { getInput } from './getInput.ts';
 
 describe('getInput', () => {
   test('should return full form input when no path provided', () => {
-    const store = createTestStore(v.object({ name: v.string(), age: v.number() }), {
-      initialInput: { name: 'John', age: 30 },
-    });
+    const store = createTestStore(
+      v.object({ name: v.string(), age: v.number() }),
+      {
+        initialInput: { name: 'John', age: 30 },
+      }
+    );
 
     const result = getInput(store);
 
