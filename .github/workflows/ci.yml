@@ -7,19 +7,9 @@ on:
   workflow_call:
 
 jobs:
-  install:
-    name: Install packages
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-      - name: Setup environment
-        uses: ./.github/actions/environment
-
   # packages/core
   core_prettier:
     name: Run Prettier in packages/core
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -32,7 +22,6 @@ jobs:
 
   core_eslint:
     name: Run ESLint in packages/core
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -45,7 +34,6 @@ jobs:
 
   core_vitest:
     name: Run Vitest in packages/core
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -59,7 +47,6 @@ jobs:
   # packages/methods
   methods_prettier:
     name: Run Prettier in packages/methods
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -72,7 +59,6 @@ jobs:
 
   methods_eslint:
     name: Run ESLint in packages/methods
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -85,7 +71,6 @@ jobs:
 
   methods_vitest:
     name: Run Vitest in packages/methods
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -99,7 +84,6 @@ jobs:
   # frameworks/solid
   solid_prettier:
     name: Run Prettier in frameworks/solid
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -112,7 +96,6 @@ jobs:
 
   solid_eslint:
     name: Run ESLint in frameworks/solid
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -126,7 +109,6 @@ jobs:
   # frameworks/react
   react_prettier:
     name: Run Prettier in frameworks/react
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -139,7 +121,6 @@ jobs:
 
   react_eslint:
     name: Run ESLint in frameworks/react
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -153,7 +134,6 @@ jobs:
   # frameworks/preact
   preact_prettier:
     name: Run Prettier in frameworks/preact
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -166,7 +146,6 @@ jobs:
 
   preact_eslint:
     name: Run ESLint in frameworks/preact
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -180,7 +159,6 @@ jobs:
   # frameworks/qwik
   qwik_prettier:
     name: Run Prettier in frameworks/qwik
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -193,7 +171,6 @@ jobs:
 
   qwik_eslint:
     name: Run ESLint in frameworks/qwik
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -207,7 +184,6 @@ jobs:
   # frameworks/svelte
   svelte_prettier:
     name: Run Prettier in frameworks/svelte
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -220,7 +196,6 @@ jobs:
 
   svelte_eslint:
     name: Run ESLint in frameworks/svelte
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -233,7 +208,6 @@ jobs:
 
   svelte_check:
     name: Run Svelte check in frameworks/svelte
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -247,7 +221,6 @@ jobs:
   # frameworks/vue
   vue_prettier:
     name: Run Prettier in frameworks/vue
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -260,7 +233,6 @@ jobs:
 
   vue_eslint:
     name: Run ESLint in frameworks/vue
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -274,7 +246,6 @@ jobs:
   # website
   website_prettier:
     name: Run Prettier in website
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -287,7 +258,6 @@ jobs:
 
   website_eslint:
     name: Run ESLint in website
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
