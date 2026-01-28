@@ -1,3 +1,11 @@
+---
+name: repo-source-code-review
+description: Review PRs and source code changes in Formisch packages/ and frameworks/. Use when reviewing pull requests, validating implementation patterns, or checking code quality before merging.
+metadata:
+  author: formisch
+  version: '1.0'
+---
+
 # Reviewing Source Code Changes
 
 Guide for reviewing PRs and source code changes in `packages/` and `frameworks/`.
@@ -95,8 +103,6 @@ export function useField<
 | Components | `Renders a ...`                              |
 | Utilities  | `Returns ...`, `Gets ...`, `Sets ...`        |
 
-See [document-source-code.md](./document-source-code.md) for full documentation rules.
-
 ### Tests
 
 | Check          | Requirement                                                |
@@ -128,7 +134,7 @@ See [document-source-code.md](./document-source-code.md) for full documentation 
 - [ ] Naming conventions followed
 - [ ] Cross-framework consistency for shared APIs
 
-## Related Guides
+## Related Skills
 
-- [repository-structure.md](./repository-structure.md) — Navigate the codebase
-- [document-source-code.md](./document-source-code.md) — JSDoc requirements
+- `repo-structure-navigate` — Navigate the codebase
+- `repo-source-code-document` — JSDoc requirements

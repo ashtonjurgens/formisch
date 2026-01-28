@@ -60,18 +60,8 @@ frameworks/{framework}/src/
 
 Each method has its own folder: `name.ts`, `index.ts`.
 
-## Detailed Guides
+## Agent Skills
 
-**Before performing any task listed below, OPEN and READ the corresponding guide file.**
+This repository includes agent skills in `/skills/` following the [Agent Skills](https://agentskills.io) open standard.
 
-| Task                          | Guide (read before starting)                                                      |
-| ----------------------------- | --------------------------------------------------------------------------------- |
-| Navigate repo, find files     | [prompts/repository-structure.md](../prompts/repository-structure.md)             |
-| Write JSDoc / inline comments | [prompts/document-source-code.md](../prompts/document-source-code.md)             |
-| Write unit tests              | [prompts/write-unit-tests.md](../prompts/write-unit-tests.md)                     |
-| Review PRs and source changes | [prompts/review-source-code-changes.md](../prompts/review-source-code-changes.md) |
-| Add new API page to website   | [prompts/add-new-api-to-website.md](../prompts/add-new-api-to-website.md)         |
-| Update existing API docs      | [prompts/update-api-on-website.md](../prompts/update-api-on-website.md)           |
-| Add guide/tutorial to website | [prompts/add-new-guide-to-website.md](../prompts/add-new-guide-to-website.md)     |
-
-**Source code is the single source of truth.** All documentation must match the source in `packages/` and `frameworks/`.
+**Naming:** Skills prefixed with `repo-` are local repository skills

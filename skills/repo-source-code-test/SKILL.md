@@ -1,4 +1,12 @@
-# Writing Unit Tests for Formisch
+---
+name: repo-source-code-test
+description: Write unit tests for Formisch packages/core with proper TypeScript types. Use when creating new tests, fixing type errors in tests, or adding test coverage for core functions.
+metadata:
+  author: formisch
+  version: '1.0'
+---
+
+# Writing Unit Tests
 
 Guide for writing high-quality unit tests in `packages/core/` with proper TypeScript types.
 
@@ -13,8 +21,6 @@ Guide for writing high-quality unit tests in `packages/core/` with proper TypeSc
 1. **No type casts** — Get types right, don't use `as` assertions
 2. **Type guards only when needed** — Use `if` blocks to narrow types only when TypeScript reports an error
 3. **Real DOM elements** — Use `document.createElement()`, not mock objects
-
----
 
 ## Test File Structure
 
@@ -78,8 +84,6 @@ For tests that need DOM APIs (focus, createElement, etc.), add the directive:
 import { describe, expect, test } from 'vitest';
 ```
 
----
-
 ## Type-Safe Patterns
 
 ### Accessing Union Type Properties
@@ -93,7 +97,7 @@ type InternalFieldStore =
   | InternalValueStore; // has: kind: 'value', NO children property
 ```
 
-**When to use type guards:** Only use `if` blocks for type narrowing when TypeScript reports an error. If the code compiles without errors, no narrowing is needed.
+**When to use type guards:** Only use `if` blocks for type narrowing when TypeScript reports an error.
 
 **❌ Bad — Type cast:**
 
@@ -106,7 +110,7 @@ expect(
 ).toBe('a');
 ```
 
-**✅ Good — Type guard with assertion (only when TS error occurs):**
+**✅ Good — Type guard with assertion:**
 
 ```typescript
 const itemsStore = store.children.items;
@@ -116,7 +120,7 @@ if (itemsStore.kind === 'array') {
 }
 ```
 
-The pattern (use only when TypeScript reports an error):
+The pattern:
 
 1. **Extract to variable** — `const itemsStore = store.children.items;`
 2. **Assert the kind** — `expect(itemsStore.kind).toBe('array');` (test fails if wrong)
@@ -150,8 +154,6 @@ test('should initialize array schema', () => {
 });
 ```
 
----
-
 ## DOM Element Mocking
 
 ### ❌ Bad — Mock object with cast:
@@ -175,8 +177,6 @@ expect(mockFocus).toHaveBeenCalledOnce();
 ```
 
 **Note:** Requires `// @vitest-environment jsdom` at file top.
-
----
 
 ## Valibot Issue Helpers
 
@@ -207,9 +207,7 @@ function validationIssue(
 }
 ```
 
-**Note:** The `path` type is `[v.IssuePathItem, ...v.IssuePathItem[]]` (tuple with at least one item), not `v.IssuePathItem[]`.
-
----
+**Note:** The `path` type is `[v.IssuePathItem, ...v.IssuePathItem[]]` (tuple with at least one item).
 
 ## Common Type Errors and Fixes
 
@@ -217,7 +215,6 @@ function validationIssue(
 
 ```
 Property 'children' does not exist on type 'InternalFieldStore'.
-Property 'children' does not exist on type 'InternalValueStore'.
 ```
 
 **Fix:** Use type guard pattern (see above).
@@ -238,16 +235,6 @@ Type 'IssuePathItem[]' is not assignable to type '[IssuePathItem, ...IssuePathIt
 
 **Fix:** Use tuple type `[v.IssuePathItem, ...v.IssuePathItem[]]` for path arrays.
 
-### Error: Cannot find type definition file for 'minimatch'
-
-```
-error TS2688: Cannot find type definition file for 'minimatch'.
-```
-
-**Fix:** Add `"types": ["node"]` to `tsconfig.json` compilerOptions to limit type definitions.
-
----
-
 ## Test Organization
 
 ### Describe Blocks
@@ -258,7 +245,6 @@ Group tests by functionality:
 describe('functionName', () => {
   describe('basic behavior', () => {
     test('should handle simple case', () => {});
-    test('should handle edge case', () => {});
   });
 
   describe('error handling', () => {
@@ -267,7 +253,6 @@ describe('functionName', () => {
 
   describe('nested fields', () => {
     test('should handle nested objects', () => {});
-    test('should handle arrays', () => {});
   });
 });
 ```
@@ -281,14 +266,10 @@ describe('functionName', () => {
 ```typescript
 // ✅ Good
 test('should focus first error field when shouldFocus is true', () => {});
-test('should not mark field as dirty for empty string from undefined', () => {});
 
 // ❌ Bad
 test('focus test', () => {});
-test('works correctly', () => {});
 ```
-
----
 
 ## Running Tests
 
@@ -306,8 +287,6 @@ pnpm -C packages/core test validateFormInput
 pnpm -C packages/core test --coverage
 ```
 
----
-
 ## Checklist
 
 Before committing tests:
@@ -321,17 +300,14 @@ Before committing tests:
 - [ ] All tests pass: `pnpm test`
 - [ ] No lint errors: `pnpm lint`
 
----
-
 ## Quick Reference
 
 ### Type Guard Pattern
 
 ```typescript
 const fieldStore = store.children.fieldName;
-expect(fieldStore.kind).toBe('array'); // or 'object'
+expect(fieldStore.kind).toBe('array');
 if (fieldStore.kind === 'array') {
-  // TypeScript knows fieldStore is InternalArrayStore
   expect(fieldStore.children).toHaveLength(2);
 }
 ```
