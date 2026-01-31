@@ -2,9 +2,11 @@
 
 All notable changes to the library will be documented in this file.
 
-## vX.X.X (Month DD, YYYY)
+## v0.3.0 (January 31, 2026)
 
 - Add `onChange` method to `FieldStore` for programmatic input value setting
+- Change `@formisch/core` to v0.5.0
+- Change `@formisch/methods` to v0.6.0
 - Change imports from `@formisch/core/vanilla` to `@formisch/core/react`
 - Change imports from `@formisch/methods/vanilla` to `@formisch/methods/react`
 
