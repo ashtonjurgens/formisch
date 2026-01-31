@@ -5,6 +5,7 @@ All notable changes to the library will be documented in this file.
 ## vX.X.X (Month DD, YYYY)
 
 - Add React-specific `handleSubmit` method using `FormEvent` type from React
+- Add React-specific `setInput` method with change event validation
 - Rename `vanilla` build target in favor of dedicated `react` target
 
 ## v0.5.2 (December 11, 2025)
