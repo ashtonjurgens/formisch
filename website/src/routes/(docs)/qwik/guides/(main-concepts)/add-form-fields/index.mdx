@@ -139,6 +139,7 @@ The field store provides access to the following properties as signals:
 - `isTouched`: A signal indicating whether the field has been touched (access with `.value`).
 - `isDirty`: A signal indicating whether the current input differs from the initial input (access with `.value`).
 - `isValid`: A signal indicating whether the field passes all validation rules (access with `.value`).
+- `onInput`: Sets the field input value programmatically. Use this when the field cannot be connected to a native HTML element (e.g., complex custom inputs or component libraries that don't expose the underlying element).
 
 ## Next steps
 
