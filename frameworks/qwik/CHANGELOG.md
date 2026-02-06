@@ -2,7 +2,7 @@
 
 All notable changes to the library will be documented in this file.
 
-## vX.X.X (February 05, 2026)
+## v0.9.1 (February 05, 2026)
 
 - Fix `Form` component submit handler types
 
