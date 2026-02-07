@@ -1,6 +1,7 @@
 export * from './getElementInput/index.ts';
 export * from './getFieldBool/index.ts';
 export * from './getFieldInput/index.ts';
+export * from './getFieldPatch/index.ts';
 export * from './getFieldStore/index.ts';
 export * from './initializeFieldStore/index.ts';
 export * from './setFieldBool/index.ts';
