@@ -1,30 +1,4 @@
-# Differences from upstream `fabian-hiller/formisch`
-
-> [!WARNING]
-> This fork does not exist for public consumption, or make any accommodations
-> to that end. Use at your own risk.
-
-Why did I create this: I found I needed a way to modify the way formisch
-handles certain schemas.
-
-1. I want input to fields with number schemas to be transformed into numbers, when set as strings.
-2. I want input to fields with Date schemas to be transformed into Date objects.
-3. I want Date objects to be compared properly when settings isDirty.
-
-Perhaps this much could be reasonably added to formisch, however
-
-1. it may create a hard link to Valibot (standard schema is being considered). 
-2. I keep finding myself wanting to tweak formisch's behavior to fit my setup.
-   I'm looking towards the future where I might want to get formisch to do
-   more, but it would be a poor fit for the library. A "hard fork" is an option
-   but plugin-like functionality is something that could exist within the main
-   repo (and I'd rather not fork).
-
-For these 2 reasons I wanted to look into introducing some customizability into
-formisch. *This fork is for me to experiment and get the features I need, for my
-usage.*
-
-# Formisch (this is a fork)
+# Formisch
 
 Formisch is a schema-based, headless form library for JS frameworks. It manages form state and validation. It is type-safe, fast by default and its bundle size is small due to its modular design. Try it out in our [playground](https://stackblitz.com/edit/formisch-playground-solid)!
 
