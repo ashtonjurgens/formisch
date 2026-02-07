@@ -19,6 +19,10 @@ export interface GetFormInputConfig {
    * The path to a field. Leave undefined to get the entire form input.
    */
   readonly path?: undefined;
+  /**
+   * Return a patch style output. This is specific to the @haberdasher-app codebase.
+   */
+  readonly patch?: boolean;
 }
 
 /**
@@ -32,6 +36,10 @@ export interface GetFieldInputConfig<
    * The path to the field to retrieve input from.
    */
   readonly path: ValidPath<v.InferInput<TSchema>, TFieldPath>;
+  /**
+   * Return a patch style output. This is specific to the @haberdasher-app codebase.
+   */
+  readonly patch?: boolean;
 }
 
 /**
@@ -75,6 +83,7 @@ export function getInput(
   config?: GetFormInputConfig | GetFieldInputConfig<Schema, RequiredPath>
 ): unknown {
   return getFieldInput(
-    config?.path ? getFieldStore(form[INTERNAL], config.path) : form[INTERNAL]
+    config?.path ? getFieldStore(form[INTERNAL], config.path) : form[INTERNAL],
+    config
   );
 }

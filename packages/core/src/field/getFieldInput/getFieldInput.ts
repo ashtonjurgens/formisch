@@ -6,11 +6,20 @@ import type { InternalFieldStore } from '../../types/index.ts';
  * for nullish array/object inputs, or the primitive value for value fields.
  *
  * @param internalFieldStore The field store to get input from.
+ * @param config Optional configuration for input retrieval.
  *
  * @returns The field input.
  */
 // @__NO_SIDE_EFFECTS__
-export function getFieldInput(internalFieldStore: InternalFieldStore): unknown {
+export function getFieldInput(internalFieldStore: InternalFieldStore): unknown;
+export function getFieldInput(
+  internalFieldStore: InternalFieldStore,
+  config?: { readonly patch?: boolean }
+): unknown;
+export function getFieldInput(
+  internalFieldStore: InternalFieldStore,
+  config?: { readonly patch?: boolean }
+): unknown {
   // If field store is array, collect input from children
   if (internalFieldStore.kind === 'array') {
     // If array input is not nullish, build array from children
@@ -24,7 +33,10 @@ export function getFieldInput(internalFieldStore: InternalFieldStore): unknown {
         index < internalFieldStore.items.value.length;
         index++
       ) {
-        value[index] = getFieldInput(internalFieldStore.children[index]);
+        value[index] = getFieldInput(
+          internalFieldStore.children[index],
+          config
+        );
       }
       return value;
     }
@@ -42,7 +54,7 @@ export function getFieldInput(internalFieldStore: InternalFieldStore): unknown {
 
       // Collect input from each object property
       for (const key in internalFieldStore.children) {
-        value[key] = getFieldInput(internalFieldStore.children[key]);
+        value[key] = getFieldInput(internalFieldStore.children[key], config);
       }
       return value;
     }
