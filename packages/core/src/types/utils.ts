@@ -16,21 +16,17 @@ export type MaybePromise<TValue> = TValue | Promise<TValue>;
 /**
  * Makes all properties deeply optional.
  */
-export type DeepPartial<TValue> = TValue extends readonly unknown[]
-  ? number extends TValue['length']
-    ? TValue
-    : { [Key in keyof TValue]?: DeepPartial<TValue[Key]> | undefined }
-  : TValue extends Record<PropertyKey, unknown>
-    ? { [Key in keyof TValue]?: DeepPartial<TValue[Key]> | undefined }
-    : TValue | undefined;
+export type DeepPartial<TValue> = TValue extends
+  | Record<PropertyKey, unknown>
+  | readonly unknown[]
+  ? { [Key in keyof TValue]?: DeepPartial<TValue[Key]> | undefined }
+  : TValue | undefined;
 
 /**
  * Makes all value properties optional.
  */
-export type PartialValues<TValue> = TValue extends readonly unknown[]
-  ? number extends TValue['length']
-    ? TValue
-    : { [Key in keyof TValue]: PartialValues<TValue[Key]> }
-  : TValue extends Record<PropertyKey, unknown>
-    ? { [Key in keyof TValue]: PartialValues<TValue[Key]> }
-    : TValue | undefined;
+export type PartialValues<TValue> = TValue extends
+  | Record<PropertyKey, unknown>
+  | readonly unknown[]
+  ? { [Key in keyof TValue]: PartialValues<TValue[Key]> }
+  : TValue | undefined;
