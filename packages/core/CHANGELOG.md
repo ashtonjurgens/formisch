@@ -2,6 +2,10 @@
 
 All notable changes to the library will be documented in this file.
 
+## vX.X.X (Month DD, YYYY)
+
+- Fix `PartialValues` type for array items
+
 ## v0.6.1 (February 09, 2026)
 
 - Fix `DeepPartial` and `PartialValues` types for arrays
