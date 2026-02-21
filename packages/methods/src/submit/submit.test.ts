@@ -20,7 +20,6 @@ describe('submit', () => {
 
   test('should not throw if form element is undefined', () => {
     const store = createTestStore(v.object({ name: v.string() }));
-    // @ts-expect-error - Testing undefined element behavior
     store[INTERNAL].element = undefined;
 
     expect(() => submit(store)).not.toThrow();

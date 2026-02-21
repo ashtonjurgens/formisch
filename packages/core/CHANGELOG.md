@@ -2,6 +2,14 @@
 
 All notable changes to the library will be documented in this file.
 
+## v0.6.2 (February 10, 2026)
+
+- Fix `PartialValues` type for array items
+
+## v0.6.1 (February 09, 2026)
+
+- Fix `DeepPartial` and `PartialValues` types for arrays
+
 ## v0.6.0 (February 05, 2026)
 
 - Split submit handler types into `SubmitHandler` (no event) and `SubmitEventHandler` (with event)
